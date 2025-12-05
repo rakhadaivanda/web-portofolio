@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Rakha Dayvanda Putra | Portfolio</title>
+  <title>Rakha Dayvanda Putra | From Creativity to Infinity</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Audiowide&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
   <nav class="navbar">
     <div class="logo">RDP</div>
     <ul class="menu">
@@ -18,10 +17,11 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button id="audio-btn">🔊</button>
   </nav>
 
   <section id="hero">
-    <video src="radiohead.mp4" autoplay loop muted playsinline></video>
+    <video src="Let Down - Radiohead (slowed and reverb).mp4" autoplay loop muted playsinline></video>
     <div class="overlay">
       <h1>Portofolio</h1>
       <p>from creativity to infinity</p>
@@ -32,28 +32,29 @@
   <section id="about">
     <div class="about-content">
         <div class="profile-area">
-            <img src="Foto_Saya.jpeg" alt="Rakha Dayvanda" class="profile-pic">
+            <img src="Foto_Saya.jpeg" alt="Foto Profil [Nama Anda]" class="profile-pic">
             <h3 class="profile-name">Rakha Dayvanda Putra</h3>
             <p class="profile-title">Web Developer | Data Analyst | IT Support</p>
         </div>
         <div class="text-area">
             <h2>About Me</h2>
-            <p>I’m Informatics student from Gunadarma University with a GPA of 3.74. I have an interest in Web Engineering, IT Support, and Data Analysis. I am communicative, supportive, and willing to learn new things. I am ready to work in a team or individually. Honesty is my main priority.</p>
+            <p>I’m Informatics student from Gunadarma University with a GPA of 3.74. I have an interested in Web Engineering, IT Support, and Data Analysis. I am a communicative, have a high spirit support, and willing to learn new things. 
+            I am also ready to work in a team or individual. Moreover, honestly is my mind priority.</p>
         </div>
     </div>
-  </section>
+</section>
 
   <section id="work">
     <h2>My Portfolio</h2>
     <div class="filter">
-      <button>All</button>
-      <button>Web</button>
-      <button>Design</button>
+      <button data-cat="all">All</button>
+      <button data-cat="web">Web</button>
+      <button data-cat="design">Design</button>
     </div>
     <div class="grid">
-      <div class="card"><img src="Foto_Saya.jpeg"><span>Project 1</span></div>
-      <div class="card"><img src="Foto_Saya.jpeg"><span>Project 2</span></div>
-      <div class="card"><img src="Foto_Saya.jpeg"><span>Project 3</span></div>
+      <!-- example items -->
+      <div class="card" data-cat="web"><img src="web_music.png"><span>Project 1</span></div>
+      <div class="card" data-cat="design"><img src="web_hukum.png"><span>Project 2</span></div>
     </div>
   </section>
 
@@ -72,7 +73,7 @@
     <form>
       <input type="text" placeholder="Name" required>
       <input type="email" placeholder="Email" required>
-      <textarea placeholder="Message" rows="5" required></textarea>
+      <textarea placeholder="Message" required></textarea>
       <button type="submit">Send Message</button>
     </form>
     <div class="socials">
@@ -81,8 +82,12 @@
   </section>
 
   <footer>
-    <p>© 2025 Rakha Dayvanda. All rights reserved.</p>
+    <p>© 2025 Rakha Dayvanda Putra. All rights reserved.</p>
   </footer>
 
+  <audio id="bg-audio" loop>
+    <source src="Let Down - Radiohead slowed and reverb.mp3" type="audio/mp3">
+  </audio>
+  <script src="script.js"></script>
 </body>
 </html>
