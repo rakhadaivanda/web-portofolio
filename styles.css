@@ -1,22 +1,18 @@
-/* styles.css - Desain Nordic Dark Premium */
+/* styles.css - Nordic Dark + Video Fix */
 
 /* --- RESET & FONT --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* --- VARIABEL WARNA DARI PALET BARU --- */
 :root {
-    /* Mapping Warna dari Image Palette */
-    --bg-main: #2a2d3f;       /* Dark Navy (Background Utama) */
-    --bg-card: #464a6d;       /* Slate Blue (Background Kartu/Section) */
-    --text-muted: #a2a8b9;    /* Blue Grey (Teks Deskripsi) */
-    --accent: #e3d9ce;        /* Beige (Warna Aksen/Tombol/Link) */
-    --text-main: #f5f0e6;     /* Cream White (Teks Utama/Judul) */
-    
+    --bg-main: #2a2d3f;       /* Dark Navy */
+    --bg-card: #464a6d;       /* Slate Blue */
+    --text-muted: #a2a8b9;    /* Blue Grey */
+    --accent: #e3d9ce;        /* Beige */
+    --text-main: #f5f0e6;     /* Cream White */
     --font-heading: 'Audiowide', sans-serif;
     --font-body: 'Space Mono', monospace;
 }
 
-/* --- GLOBAL STYLES --- */
 body {
     font-family: var(--font-body);
     background-color: var(--bg-main);
@@ -32,16 +28,8 @@ h1, h2, h3 {
     letter-spacing: 1px;
 }
 
-a {
-    text-decoration: none;
-    color: var(--accent);
-    transition: 0.3s;
-}
-
-a:hover {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(227, 217, 206, 0.5);
-}
+a { text-decoration: none; color: var(--accent); transition: 0.3s; }
+a:hover { color: #fff; text-shadow: 0 0 10px rgba(227, 217, 206, 0.5); }
 
 section {
     padding: 80px 20px;
@@ -58,10 +46,12 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(42, 45, 63, 0.95); /* Semi-transparent Dark Navy */
+    background: rgba(42, 45, 63, 0.90);
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid var(--bg-card);
+    top: 0; /* Pastikan nempel di atas */
+    left: 0;
 }
 
 .navbar .logo {
@@ -71,8 +61,8 @@ section {
     font-family: var(--font-heading);
 }
 
-.menu { list-style: none; }
-.menu li { display: inline; margin: 0 15px; }
+.menu { list-style: none; display: flex; } /* Tambahkan display flex agar mendatar */
+.menu li { margin: 0 15px; }
 
 .menu a {
     color: var(--text-main);
@@ -94,34 +84,63 @@ section {
 
 .menu a:hover::after { width: 100%; }
 
-/* --- HERO SECTION --- */
+/* --- HERO SECTION (VIDEO BACKGROUND FIX) --- */
 #hero {
+    position: relative;
     height: 100vh;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at center, var(--bg-card) 0%, var(--bg-main) 100%);
     text-align: center;
+    color: var(--text-main);
+}
+
+/* PENTING: Ini yang bikin video jadi background */
+#hero video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Taruh di paling belakang */
+    opacity: 0.6; /* Supaya teks terbaca */
+}
+
+/* Lapisan gelap di atas video biar teks makin jelas */
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(42, 45, 63, 0.7); 
+    z-index: 0;
+}
+
+.overlay {
+    position: relative;
+    z-index: 1; /* Pastikan teks di atas overlay */
     padding: 20px;
 }
 
 #hero h1 {
     font-size: 4rem;
-    color: var(--accent);
-    margin-bottom: 20px;
-    text-shadow: 0 0 20px rgba(227, 217, 206, 0.3);
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
 }
 
 #hero p {
     font-size: 1.5rem;
-    color: var(--text-muted);
-    margin-bottom: 40px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 
 .btn {
+    display: inline-block;
     padding: 15px 40px;
     background: var(--accent);
     color: var(--bg-main);
@@ -138,10 +157,7 @@ section {
 }
 
 /* --- ABOUT SECTION --- */
-#about {
-    background: var(--bg-main);
-}
-
+#about { background: var(--bg-main); }
 .about-content {
     display: flex;
     align-items: center;
@@ -159,41 +175,49 @@ section {
     object-fit: cover;
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
-
 .text-area h2 { color: var(--accent); margin-bottom: 20px; }
 .text-area p { color: var(--text-muted); font-size: 1.1rem; }
 
-/* --- PORTFOLIO (WORK) --- */
+/* --- PORTFOLIO --- */
 #work {
-    background: var(--bg-card); /* Warna Slate untuk selang-seling */
+    background: var(--bg-card);
     border-radius: 20px;
     margin: 40px auto;
 }
+.filter { margin-bottom: 30px; }
+.filter button {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+.filter button:hover { background: var(--accent); color: var(--bg-main); }
 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
 .card {
     background: var(--bg-main);
     border: 1px solid var(--text-muted);
     border-radius: 15px;
     overflow: hidden;
-    transition: transform 0.3s;
     position: relative;
+    height: 250px;
 }
-
-.card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent);
-}
-
 .card img {
     width: 100%;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
     opacity: 0.8;
     transition: 0.3s;
 }
-
 .card:hover img { opacity: 1; transform: scale(1.05); }
-
 .card span {
     position: absolute;
     bottom: 15px;
@@ -205,7 +229,24 @@ section {
     font-weight: bold;
 }
 
-/* --- CONTACT FORM --- */
+/* --- SERVICES --- */
+#services h2 { color: var(--accent); margin-bottom: 30px; }
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.service-card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid var(--text-muted);
+    color: var(--text-main);
+    font-weight: bold;
+    font-family: var(--font-heading);
+}
+
+/* --- CONTACT --- */
 #contact form {
     max-width: 600px;
     margin: 0 auto;
@@ -213,7 +254,6 @@ section {
     flex-direction: column;
     gap: 20px;
 }
-
 input, textarea {
     padding: 15px;
     background: rgba(255, 255, 255, 0.05);
@@ -222,13 +262,6 @@ input, textarea {
     border-radius: 8px;
     font-family: var(--font-body);
 }
-
-input:focus, textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.1);
-}
-
 button[type="submit"] {
     background: var(--accent);
     color: var(--bg-main);
@@ -240,23 +273,19 @@ button[type="submit"] {
     font-size: 1.1rem;
     transition: 0.3s;
 }
+button[type="submit"]:hover { background: #fff; transform: scale(1.02); }
+.socials { margin-top: 30px; }
+.socials a { font-size: 1.2rem; margin: 0 10px; }
 
-button[type="submit"]:hover {
-    background: #fff;
-    transform: scale(1.02);
-}
-
-/* --- FOOTER --- */
 footer {
     padding: 40px;
-    background: #1f212e; /* Lebih gelap sedikit dari bg-main */
+    background: #1f212e;
     color: var(--text-muted);
     border-top: 1px solid var(--bg-card);
 }
 
-/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     #hero h1 { font-size: 2.5rem; }
-    .about-content { flex-direction: column; text-align: center; }
-    .menu { display: none; } /* Simpel hide dulu untuk mobile */
+    .about-content { flex-direction: column; }
+    .navbar { flex-direction: column; gap: 10px; }
 }
