@@ -96,39 +96,6 @@ const activateNavLink = () => {
 
 window.addEventListener('scroll', activateNavLink);
 
-// --- PORTFOLIO FILTER ---
-const filterBtns = document.querySelectorAll('.filter button');
-const portfolioCards = document.querySelectorAll('.portfolio-card');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const cat = btn.dataset.cat;
-
-    // Update active button
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    // Filter cards with animation
-    portfolioCards.forEach(card => {
-      if (cat === 'all' || card.dataset.cat === cat) {
-        card.style.display = '';
-        card.style.animation = 'fadeInUp 0.4s ease forwards';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  });
-});
-
-// Fade in animation for filter
-const styleSheet = document.createElement('style');
-styleSheet.textContent = `
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-`;
-document.head.appendChild(styleSheet);
 
 // --- AUDIO TOGGLE ---
 const audio = document.getElementById('bg-audio');
